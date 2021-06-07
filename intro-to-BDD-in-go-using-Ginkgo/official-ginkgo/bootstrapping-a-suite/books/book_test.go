@@ -15,6 +15,16 @@ var _ = Describe("Book", func() {
 		Expect(book.Pages).To(Equal(2020))
 	})
 
+	Describe("The foobar service", func() {
+		Context("when calling Foo()", func() {
+			Context("when no ID is provided", func() {
+				Specify("an ErrNoID error is returned", func() {
+
+				})
+			})
+		})
+	})
+
 	var (
 		longBook  Book
 		shortBook Book
