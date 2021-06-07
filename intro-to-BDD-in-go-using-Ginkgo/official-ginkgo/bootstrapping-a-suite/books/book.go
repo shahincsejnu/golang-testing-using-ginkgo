@@ -1,6 +1,8 @@
 package books
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Book struct {
 	Title  string
@@ -13,6 +15,14 @@ func (val *Book) CategoryByLength() string {
 		return "NOVEL"
 	} else {
 		return "SHORT STORY"
+	}
+}
+
+func NewBook(title, author string, pages int) Book {
+	return Book{
+		Title:  title,
+		Author: author,
+		Pages:  pages,
 	}
 }
 
