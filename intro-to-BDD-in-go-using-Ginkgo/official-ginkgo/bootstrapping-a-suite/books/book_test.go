@@ -15,6 +15,20 @@ var _ = Describe("Book", func() {
 		Expect(book.Pages).To(Equal(2020))
 	})
 
+	done := make(chan bool)
+
+	It("panics in a goroutine", func() {
+		go func() {
+			defer GinkgoRecover()
+
+			Expect(DoSomething()).Should(BeTrue())
+			close(done)
+		}()
+		//_, ok := <- done
+		//Expect(ok).To(BeFalse())
+		Eventually(done).Should(BeClosed())
+	})
+
 	Describe("The foobar service", func() {
 		Context("when calling Foo()", func() {
 			Context("when no ID is provided", func() {
