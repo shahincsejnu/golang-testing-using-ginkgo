@@ -29,6 +29,15 @@ func NewBookFromJSON(data []byte) Book {
 	return book
 }
 
+func NewBookFromJSON2(data []byte) (Book, error) {
+	var book Book
+	err := json.Unmarshal(data, &book)
+	if err != nil {
+		return book, err
+	}
+	return book, nil
+}
+
 func (b *Book) AuthorLastName() string {
 	name := strings.Split(b.Author, " ")
 	return name[len(name)-1]
