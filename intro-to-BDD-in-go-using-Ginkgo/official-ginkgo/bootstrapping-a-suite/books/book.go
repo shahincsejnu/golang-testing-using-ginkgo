@@ -18,6 +18,10 @@ func (val *Book) CategoryByLength() string {
 	}
 }
 
+func DoSomething() bool {
+	return true
+}
+
 func NewBook(title, author string, pages int) Book {
 	return Book{
 		Title:  title,
