@@ -26,6 +26,7 @@ func NewBookFromJSON(data []byte) Book {
 	if err != nil {
 		return Book{}
 	}
+	fmt.Println(book.Title)
 	return book
 }
 
