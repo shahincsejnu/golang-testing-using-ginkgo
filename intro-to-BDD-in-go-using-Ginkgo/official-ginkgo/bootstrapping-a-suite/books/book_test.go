@@ -15,6 +15,20 @@ var _ = Describe("Book", func() {
 		Expect(book.Pages).To(Equal(2020))
 	})
 
+	var _ = Describe("Book", func() {
+		It("can be loaded from JSON", func() {
+			book := NewBookFromJSON([]byte(`{
+            "title":"Les Miserables",
+            "author":"Victor Hugo",
+            "pages":2783
+        }`))
+
+			Expect(book.Title).To(Equal("Les Miserables"))
+			Expect(book.Author).To(Equal("Victor Hugo"))
+			Expect(book.Pages).To(Equal(2783))
+		})
+	})
+
 	done := make(chan bool)
 
 	It("panics in a goroutine", func() {

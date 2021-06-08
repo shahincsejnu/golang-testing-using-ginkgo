@@ -1,6 +1,7 @@
 package books
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -10,12 +11,21 @@ type Book struct {
 	Pages  int
 }
 
-func (val *Book) CategoryByLength() string {
-	if val.Pages > 200 {
+func (b *Book) CategoryByLength() string {
+	if b.Pages > 200 {
 		return "NOVEL"
 	} else {
 		return "SHORT STORY"
 	}
+}
+
+func NewBookFromJSON(data []byte) Book {
+	var book Book
+	err := json.Unmarshal(data, &book)
+	if err != nil {
+		return Book{}
+	}
+	return book
 }
 
 func DoSomething() bool {
