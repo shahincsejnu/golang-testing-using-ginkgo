@@ -35,7 +35,7 @@ var _ = Describe("Book", func() {
 var _ = Describe("Book", func() {
 	It("can be loaded from JSON", func() {
 		book := NewBook("Nothing", "No one", 2020)
-
+		fmt.Println(CurrentGinkgoTestDescription())
 		Expect(book.Title).To(Equal("Nothing"))
 		Expect(book.Author).To(Equal("No one"))
 		Expect(book.Pages).To(Equal(2020))
