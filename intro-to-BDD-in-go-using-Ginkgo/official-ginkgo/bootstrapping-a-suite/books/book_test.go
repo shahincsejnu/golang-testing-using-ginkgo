@@ -1,10 +1,36 @@
 package books_test
 
 import (
+	"fmt"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	. "github.com/shahincsejnu/golang-testing-using-ginkgo/intro-to-BDD-in-go-using-Ginkgo/official-ginkgo/bootstrapping-a-suite/books"
 )
+
+var _ = Describe("Book", func() {
+	var book Book
+
+	BeforeEach(func() {
+		book = NewBookFromJSON([]byte(`{
+            "title":"Les Miserables",
+            "author":"Victor Hugo",
+            "pages":2783
+        }`))
+	})
+
+	It("can be loaded from JSON", func() {
+		Expect(book.Title).To(Equal("Les Miserables"))
+		Expect(book.Author).To(Equal("Victor Hugo"))
+		Expect(book.Pages).To(Equal(2783))
+		book.Author = "Oka Oka"
+		fmt.Println(book)
+	})
+
+	It("can extract the author's last name", func() {
+		fmt.Println(book)
+		Expect(book.AuthorLastName()).To(Equal("Hugo"))
+	})
+})
 
 var _ = Describe("Book", func() {
 	It("can be loaded from JSON", func() {
@@ -52,17 +78,17 @@ var _ = Describe("Book", func() {
 			Expect(book.Pages).To(Equal(2783))
 		})
 
-		FIt("can be loaded from JSON", func() {
-			book := NewBookFromJSON([]byte(`{
-            "title":"Les Miserables",
-            "author":"Victor Hugo",
-            "pages":2783
-        }`))
-
-			Expect(book.Title).To(Equal("Les Miserables"))
-			Expect(book.Author).To(Equal("Victor Hugo"))
-			Expect(book.Pages).To(Equal(2783))
-		})
+		//FIt("can be loaded from JSON", func() {
+		//	book := NewBookFromJSON([]byte(`{
+		//    "title":"Les Miserables",
+		//    "author":"Victor Hugo",
+		//    "pages":2783
+		//}`))
+		//
+		//	Expect(book.Title).To(Equal("Les Miserables"))
+		//	Expect(book.Author).To(Equal("Victor Hugo"))
+		//	Expect(book.Pages).To(Equal(2783))
+		//})
 	})
 
 	done := make(chan bool)

@@ -3,6 +3,7 @@ package books
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 type Book struct {
@@ -26,6 +27,11 @@ func NewBookFromJSON(data []byte) Book {
 		return Book{}
 	}
 	return book
+}
+
+func (b *Book) AuthorLastName() string {
+	name := strings.Split(b.Author, " ")
+	return name[len(name)-1]
 }
 
 func DoSomething() bool {
