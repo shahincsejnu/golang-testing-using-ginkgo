@@ -7,6 +7,77 @@ import (
 	. "github.com/shahincsejnu/golang-testing-using-ginkgo/intro-to-BDD-in-go-using-Ginkgo/official-ginkgo/bootstrapping-a-suite/books"
 )
 
+var _ = Describe("Temp", func() {
+	var book Book
+	BeforeEach(func() {
+		book = NewBookFromJSON([]byte(`{
+            "title":"first one",
+            "author":"Victor Hugo",
+            "pages":2783
+        }`))
+	})
+
+	It("", func() {
+		Expect(book.Author).To(Equal("Victor Hugo"))
+	})
+
+	Context("first level", func() {
+		BeforeEach(func() {
+			book = NewBookFromJSON([]byte(`{
+				"title":"second one",
+				"author":"Victor Hugo",
+				"pages":2783
+			}`))
+		})
+
+		It("", func() {
+			Expect(book.Author).To(Equal("Victor Hugo"))
+		})
+
+		Context("second level", func() {
+			BeforeEach(func() {
+				book = NewBookFromJSON([]byte(`{
+					"title":"third one",
+					"author":"Victor Hugo",
+					"pages":2783
+				}`))
+			})
+
+			It("", func() {
+				Expect(book.Author).To(Equal("Victor Hugo"))
+			})
+		})
+
+		Context("second level2", func() {
+			BeforeEach(func() {
+				book = NewBookFromJSON([]byte(`{
+					"title":"fourth",
+					"author":"Victor Hugo",
+					"pages":2783
+				}`))
+			})
+
+			It("", func() {
+				Expect(book.Author).To(Equal("Victor Hugo"))
+			})
+		})
+	})
+
+	Context("first level2", func() {
+		BeforeEach(func() {
+			book = NewBookFromJSON([]byte(`{
+				"title":"fifth",
+				"author":"Victor Hugo",
+				"pages":2783
+			}`))
+		})
+
+		It("", func() {
+			Expect(book.Author).To(Equal("Victor Hugo"))
+		})
+	})
+})
+
 var _ = Describe("Book", func() {
 	var (
 		book Book
